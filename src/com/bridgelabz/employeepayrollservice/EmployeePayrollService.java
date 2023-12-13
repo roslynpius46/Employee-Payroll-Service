@@ -1,6 +1,8 @@
 package com.bridgelabz.employeepayrollservice;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Represents the Employee Payroll Service class that stores employee details and provides file operations.
@@ -66,5 +68,41 @@ public class EmployeePayrollService implements Serializable {
             e.printStackTrace();
         }
         return count;
+    }
+
+    /**
+     * @desc Reads employee data from the specified file.
+     * @param fileName The name of the file to read from.
+     * @return A list of EmployeePayrollService objects containing the read data.
+     */
+    public static List<EmployeePayrollService> readFromFile(String fileName) {
+        List<EmployeePayrollService> employeeList = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data.length == 3) {
+                    String employeeId = data[0];
+                    String employeeName = data[1];
+                    long employeeSalary = Long.parseLong(data[2]);
+                    employeeList.add(new EmployeePayrollService(employeeId, employeeName, employeeSalary));
+                }
+            }
+        } catch (IOException | NumberFormatException e) {
+            e.printStackTrace();
+        }
+        return employeeList;
+    }
+
+    /**
+     * @desc Displays the employee details stored in the specified file.
+     * @param fileName The name of the file to display employee details from.
+     */
+    public static void displayEmployeeDetails(String fileName) {
+        List<EmployeePayrollService> employeeList = readFromFile(fileName);
+        System.out.println("Employee details read from file:");
+        for (EmployeePayrollService employee : employeeList) {
+            System.out.println(employee);
+        }
     }
 }

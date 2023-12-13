@@ -44,5 +44,9 @@ public class Main {
         // Count the number of entries in the file (UC-5)
         int entryCount = EmployeePayrollService.countEntries(fileName);
         System.out.println("Number of entries in the file: " + entryCount);
+        System.out.println();
+
+        // Display employee details from the file
+        EmployeePayrollService.displayEmployeeDetails(fileName);
     }
 }
