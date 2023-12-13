@@ -52,7 +52,7 @@ public class EmployeePayrollService implements Serializable {
     }
 
     /**
-     * @desc Counts the number of entries in the specified file.
+     * @desc Counts the number of entries in the specified file. [UC-5]
      * @param fileName The name of the file to count entries in.
      * @return The number of entries in the file.
      */

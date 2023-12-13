@@ -41,7 +41,7 @@ public class Main {
         // Write employee data to the file
         employee.writeToFile(fileName);
 
-        // Count the number of entries in the file
+        // Count the number of entries in the file (UC-5)
         int entryCount = EmployeePayrollService.countEntries(fileName);
         System.out.println("Number of entries in the file: " + entryCount);
     }
